@@ -51,7 +51,7 @@ const collegeCreate = async function (req, res) {
             return
         }
 
-        const fullNamePattern = /^[a-z]((?![? .,'-]$)[ .]?[a-z]){3,150}$/gi
+        const fullNamePattern = /^[a-z]((?![? .,'-]$)[ .]?[a-z,]){3,150}$/gi
 
         if (!fullName.match(fullNamePattern)) {
             return res.status(400).send({ status: false, msg: "This is not a valid full Name" })
@@ -85,7 +85,6 @@ const collegeCreate = async function (req, res) {
             return res.status(400).send({ status: false, message: "this logoLink Url already exist" })
         }
 
-        //validation ends
 
         let collegeCreate = await collegeModel.create(requestBody)
         res.status(201).send({ status: true, data: collegeCreate, message: "college created successfully" })
@@ -97,6 +96,7 @@ const collegeCreate = async function (req, res) {
 
 }
 
+        //validation ends
 
 const collegeDetails = async function (req, res) {
     try {
